@@ -5,21 +5,21 @@
 
 using namespace std;
 
-struct MyKeyHash {
-    unsigned long operator()(const int& k) const
-    {
-        return k % 10;
-    }
-};
 
 int main()
 {
-    HashMap<int, string, 10, MyKeyHash> hmap;
-    hmap.put(1, "1");
-    hmap.put(2, "2");
-    hmap.put(3, "3");
+    HashMap<int, string> hmap;
+    cout << hmap.isEmpty() << endl;
+    hmap.insert(1, "jfhdjskhfjksdjfsd");
+    hmap.insert(2, "2");
+    hmap.insert(3, "3");
+    cout << hmap.isEmpty() << endl;
+    cout << hmap.get(1) << endl;
+    hmap.printMap();
+    hmap.remove(1);
+    hmap.printMap();
 
-    string value;
+    /*string value;
     bool result = hmap.get(2, value);
     assert(result);
     assert(value == "2");
@@ -30,5 +30,5 @@ int main()
 
     hmap.remove(3);
     result = hmap.get(3, value);
-    assert(!result);
+    assert(!result);*/
 }

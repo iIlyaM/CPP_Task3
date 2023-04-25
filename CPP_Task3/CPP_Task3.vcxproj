@@ -132,7 +132,6 @@
   <ItemGroup>
     <ClInclude Include="HashNode.h" />
     <ClInclude Include="HashMap.h" />
-    <ClInclude Include="KeyHash.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
