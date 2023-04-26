@@ -2,11 +2,11 @@
 #include "KeyHash.h"
 #include <cstddef>
 #include <iostream>
+#include <set>
 
 using namespace std;
 
 
-// Hash map class template
 template <typename K, typename V>
 class HashMap
 {
@@ -26,6 +26,10 @@ public:
    V get(const K& key);
 
     void printMap();
+
+    set<K> keys();
+
+    int size();
 
 private:
     const int hashGroups = 10;
@@ -135,7 +139,6 @@ V HashMap<K, V>::get(const K& key)
 }
 
 
-
 template <typename K, typename V>
 bool HashMap<K, V>::remove(const K& key)
 {
@@ -180,4 +183,39 @@ void HashMap<K, V> ::printMap()
             entry = entry->getNext();
         }
     }
+}
+
+template<typename K, typename V>
+set<K> HashMap<K, V> ::keys()
+{
+    set<K> keys;
+    for (int rows = 0; rows < hashGroups; rows++)
+    {
+        HashNode<K, V>* entry = table[rows];
+        while (entry != NULL)
+        {
+            HashNode<K, V>* current = entry;
+            keys.insert(current->getKey());
+            entry = entry->getNext();
+        }
+    }
+    return keys;
+
+}
+
+template<typename K, typename V>
+int HashMap<K, V> ::size()
+{
+    int count = 0;
+    for (int rows = 0; rows < hashGroups; rows++)
+    {
+        HashNode<K, V>* entry = table[rows];
+        while (entry != NULL)
+        {
+            HashNode<K, V>* current = entry;
+            count++;
+            entry = entry->getNext();
+        }
+    }
+    return count;
 }
